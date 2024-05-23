@@ -3,7 +3,7 @@ import json
 from pymongo import MongoClient
 
 RABBITMQ_URL = 'amqp://rabbitmq'
-MONGODB_URL = 'mongodb://mongodb:27017'
+MONGODB_URL = 'mongodb://localhost:27017'
 QUEUE_NAME = 'userQueue'
 
 def callback(ch, method, properties, body):
