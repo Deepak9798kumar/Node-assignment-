@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  nodejs-api:
+    build: ./nodejs-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+
+  python-consumer:
+    build: ./python-consumer
+    depends_on:
+      - rabbitmq
+      - mongodb
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
